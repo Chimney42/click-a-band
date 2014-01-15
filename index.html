@@ -1,25 +1,35 @@
 <html>
-    <head>Click A Band
+    <head>
+        <title>Click A Band</title>
         <script src="app.js"></script>
         <script src="http://code.jquery.com/jquery-2.0.2.min.js"></script>
+        <link rel="stylesheet" type="text/css" href="960.css">
+        <link rel="stylesheet" type="text/css" href="main.css">        
     </head>
     <body>
-        <div id="record">
-            <a href="#" onClick="clickRecord();"><img src="images/record.jpg" width="200" height="200"></img></a>
-        </div>
-        <div id="notesTotal">
-            Notes: 0
-        </div>
-        <div id="songs">
-            <div id="title">
-                <div>Upgrade</div>
-                <div>Cost</div>
-                <div>Owned</div>
+        <div class="container_12">
+            <div id="title" class="grid_12">Click A Band</div>
+            <div id="gamePlay" class="grid_3">
+                <div id="record">
+                    <a href="#" onClick="clickRecord();"><img src="images/record.jpg" width="200" height="200"></img></a>
+                </div>
+                <div id="notesTotal">
+                    Notes: 0
+                </div>
             </div>
-            <div id="cover">
-                <div id="coverName"></div>
-                <div id="coverCost"></div>
-                <div id="coverOwned"></div>
+            <div id="songs" class="grid_4">
+                <div id="head" class="grid_4 alpha omega">
+                    <div class="grid_1 alpha">Upgrade</div>
+                    <div class="grid_1">Cost</div>
+                    <div class="grid_1">Effect</div>
+                    <div class="grid_1 omega">Owned</div>
+                </div>
+                <div id="cover" class="grid_4 alpha omega">
+                    <div id="coverName" class="grid_1 alpha">HAllo</div>
+                    <div id="coverCost" class="grid_1">Welt</div>
+                    <div id="coverEffect" class="grid_1">bar</div>
+                    <div id="coverOwned" class="grid_1 omega">foo</div>
+                </div>
             </div>
         </div>
     </body>
