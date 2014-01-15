@@ -10,26 +10,41 @@
     <body>
         <div class="container_12">
             <div id="title" class="grid_12">Click A Band</div>
-            <div id="gamePlay" class="grid_3">
-                <div id="record">
-                    <a href="#" onClick="clickRecord();"><img src="images/record.jpg" width="200" height="200"></img></a>
+            <div class="grid_3">
+                <div id="gamePlay" class="grid_3 alpha omega">
+                    <div>
+                        <a href="#" onClick="clickRecord();"><img src="images/record.jpg" width="200" height="200"></img></a>
+                    </div>
+                    <div id="notesTotal">
+                        Notes: 0
+                    </div>
                 </div>
-                <div id="notesTotal">
-                    Notes: 0
+                <div id="stats" class="grid_3 alpha omega">
+                    <div class="grid_3 alpha omega">
+                        <div>
+                            <div class="grid_1 alpha">Upgrades</div>
+                            <div class="grid_1">Effect</div>
+                            <div class="grid_1 omega">Owned</div>
+                        </div>
+                        <div id="statsCover" class="grid_3 alpha omega">
+                            <div class="grid_1 alpha" id="coverStats"></div>
+                            <div class="grid_1" id="coverEffect"></div>
+                            <div class="grid_1 omega" id="coverOwned"></div>
+                        </div>
+                    </div>
                 </div>
             </div>
             <div id="songs" class="grid_4">
+                <div class="grid_4 alpha omega">Songs</div>
                 <div id="head" class="grid_4 alpha omega">
-                    <div class="grid_1 alpha">Upgrade</div>
+                    <div class="grid_2 alpha">Upgrade</div>
                     <div class="grid_1">Cost</div>
-                    <div class="grid_1">Effect</div>
-                    <div class="grid_1 omega">Owned</div>
+                    <div class="grid_1 omega">Effect</div>
                 </div>
                 <div id="cover" class="grid_4 alpha omega">
-                    <div id="coverName" class="grid_1 alpha"></div>
+                    <div id="coverName" class="grid_2 alpha"></div>
                     <div id="coverCost" class="grid_1"></div>
-                    <div id="coverEffect" class="grid_1"></div>
-                    <div id="coverOwned" class="grid_1 omega"></div>
+                    <div id="coverEffect" class="grid_1 omega"></div>
                 </div>
             </div>
         </div>
