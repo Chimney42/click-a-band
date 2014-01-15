@@ -1,16 +1,18 @@
 #title {
-	text-align: center;
-	margin-bottom: 20px;
+    text-align: center;
+    margin-bottom: 20px;
+    font-size: 40px;
 }
 
 body {
-	background-color: #CCCCCC;
+    background-color: #CCCCCC;
+    font-family: 'Ubuntu Condensed', sans-serif;
 }
 
 .container_12 {
-	background-color: #FFFFFF;
+    background-color: #FFFFFF;
 }
 
 #gamePlay {
-	text-align: center;
+    text-align: center;
 }
