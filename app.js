@@ -8,12 +8,13 @@ var coverEffect = 1;
 var coverCost = 10;
 
 var showNotes = function() {
-    document.getElementById('notesTotal').innerHTML = 'Notes: ' + Math.round(notesTotal * 100) / 100;
+    document.getElementById('notesTotal').innerHTML = 'Noten: ' + Math.round(notesTotal * 100) / 100;
+    document.getElementById('notesPerClick').innerHTML = 'Noten pro Klick: ' + Math.round(notesPerClick * 100) / 100;
 }
 
 var showStatsTitle = function() {
     document.getElementById('statsUpgrade').innerHTML = 'Upgrade';
-    document.getElementById('statsEffect').innerHTML = 'Effekt';
+    document.getElementById('statsEffect').innerHTML = 'Gesamteffekt';
     document.getElementById('statsOwned').innerHTML = 'In Besitz';
 }
 
@@ -21,7 +22,7 @@ var showSongs = function() {
     document.getElementById('buySongsTitle').innerHTML = 'Songs';
     document.getElementById('buySongsUpgrade').innerHTML = 'Upgrade';
     document.getElementById('buySongsCost').innerHTML = 'Kosten';
-    document.getElementById('buySongsEffect').innerHTML = 'Effekt';
+    document.getElementById('buySongsEffect').innerHTML = 'Gesamteffekt';
 }
 
 var showStatsCover = function() {
@@ -34,7 +35,7 @@ var showStatsCover = function() {
 var showBuyCover = function() {
     document.getElementById('coverBuyName').innerHTML = '<a href="#" onClick="buyCover();">Cover Version</a>';
     document.getElementById('coverCost').innerHTML = Math.round(coverCost * 100) / 100;
-    document.getElementById('coverBuyEffect').innerHTML = Math.round(coverEffect * 100) / 100 + '/Klick';
+    document.getElementById('coverBuyEffect').innerHTML = '+' + Math.round(coverEffect * 100) / 100 + '/Klick';
 }
 
 var clickRecord = function() {
