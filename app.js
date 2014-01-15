@@ -1,41 +1,69 @@
 var notesTotal = 0;
 var notesPerClick = 1;
+var songsOn = false;
 
-var coverOwned = 0;
 var coverOn = false;
-var coverCost = 10;
+var coverOwned = 0;
 var coverEffect = 1;
+var coverCost = 10;
 
 var showNotes = function() {
-    document.getElementById('notesTotal').innerHTML = 'Notes: ' + notesTotal;
+    document.getElementById('notesTotal').innerHTML = 'Notes: ' + Math.round(notesTotal * 100) / 100;
+}
+
+var showStatsTitle = function() {
+    document.getElementById('statsUpgrade').innerHTML = 'Upgrade';
+    document.getElementById('statsEffect').innerHTML = 'Effekt';
+    document.getElementById('statsOwned').innerHTML = 'In Besitz';
+}
+
+var showSongs = function() {
+    document.getElementById('buySongsTitle').innerHTML = 'Songs';
+    document.getElementById('buySongsUpgrade').innerHTML = 'Upgrade';
+    document.getElementById('buySongsCost').innerHTML = 'Kosten';
+    document.getElementById('buySongsEffect').innerHTML = 'Effekt';
+}
+
+var showStatsCover = function() {
+    showStatsTitle();
+    document.getElementById('coverName').innerHTML = 'Cover';
+    document.getElementById('coverEffect').innerHTML = '+' + Math.round(coverEffect * 100) / 100 + '/Klick';
+    document.getElementById('coverOwned').innerHTML = Math.round(coverOwned * 100) / 100;
+}
+
+var showBuyCover = function() {
+    document.getElementById('coverBuyName').innerHTML = '<a href="#" onClick="buyCover();">Cover Version</a>';
+    document.getElementById('coverCost').innerHTML = Math.round(coverCost * 100) / 100;
+    document.getElementById('coverBuyEffect').innerHTML = Math.round(coverEffect * 100) / 100 + '/Klick';
 }
 
 var clickRecord = function() {
     notesTotal = notesTotal + notesPerClick;
 
+    if (notesTotal >= coverCost || songsOn) {
+        showSongs();
+    }
+
     if (notesTotal >= coverCost || coverOn) {
-        showCover();
-        coverOn = true;
+        showBuyCover();
     };
 
     showNotes();
 }
 
-var showCover = function() {
-    document.getElementById('coverName').innerHTML = '<a href="#" onClick="buyCover();">Cover Version</a>';
-    document.getElementById('coverCost').innerHTML = coverCost;
-    document.getElementById('coverOwned').innerHTML = coverOwned;
-}
 
 var buyCover = function() {
     if (notesTotal >= coverCost) {
         notesTotal = notesTotal - coverCost;
         notesPerClick = notesPerClick + coverEffect;
-        coverEffect = coverEffect + (coverEffect*0,05);
-        coverCost = coverCost + (coverCost*0,05);
+        coverCost = coverCost + (coverCost*0.05);
         coverOwned++;
 
         showNotes();
-        showCover();
-	}
+        coverCost++;
+        coverOn = true;
+        showStatsCover();
+        coverEffect = coverEffect + coverEffect*0.05;
+        showBuyCover();
+    }
 }
