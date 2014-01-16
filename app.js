@@ -54,14 +54,12 @@
 		    showNotes();
 		}
 
-
 		var buyCover = function() {
 		    if (notesTotal >= coverCost) {
 		        notesTotal = notesTotal - coverCost;
+		        coverOwned++;
 		        notesPerClick = notesPerClick + coverEffect;
 		        coverCost = coverCost + (coverCost*0.05);
-		        coverOwned++;
-
 		        showNotes();
 		        coverCost++;
 		        coverOn = true;
