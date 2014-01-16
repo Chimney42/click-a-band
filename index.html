@@ -3,15 +3,15 @@
         <title>Click A Band</title>
         <script src="http://code.jquery.com/jquery-2.0.2.min.js"></script>
         <script src="app.js"></script>
-        <link rel="stylesheet" type="text/css" href="960.css">
+        <link rel="stylesheet" type="text/css" href="1600.css">
         <link rel="stylesheet" type="text/css" href="main.css">
         <link href='http://fonts.googleapis.com/css?family=Ubuntu+Condensed&subset=latin,latin-ext' rel='stylesheet' type='text/css'>
     </head>
     <body>
-        <div class="container_12">
-            <div id="title" class="grid_12">Click A Band</div>
-            <div class="grid_3">
-                <div id="gamePlay" class="grid_3 alpha omega">
+        <div class="container_18">
+            <div id="title" class="grid_18">Click A Band</div>
+            <div id="left" class="grid_6">
+                <div id="gamePlay" class="grid_6 alpha omega">
                     <div>
                         <a id="clickRecord" href="#"><img src="images/record.jpg" width="200" height="200"></img></a>
                     </div>
@@ -22,35 +22,37 @@
                         Noten pro Klick: 1
                     </div>
                 </div>
-                <div id="stats" class="grid_3 alpha omega">
-                    <div class="grid_3 alpha omega">
+                <div id="stats" class="grid_6 alpha omega">
+                    <div class="grid_6 alpha omega">
                         <div>
-                            <div class="grid_1 alpha" id="statsUpgrade"></div>
-                            <div class="grid_1" id="statsEffect"></div>
-                            <div class="grid_1 omega" id="statsOwned"></div>
+                            <div class="grid_2 alpha" id="statsUpgrade"></div>
+                            <div class="grid_2" id="statsEffect"></div>
+                            <div class="grid_2 omega" id="statsOwned"></div>
                         </div>
-                        <div id="statsCover" class="grid_3 alpha omega">
-                            <div class="grid_1 alpha" id="coverName"></div>
-                            <div class="grid_1" id="coverEffect"></div>
-                            <div class="grid_1 omega" id="coverOwned"></div>
+                        <div id="statsCover" class="grid_6 alpha omega">
+                            <div class="grid_2 alpha" id="coverName"></div>
+                            <div class="grid_2" id="coverEffect"></div>
+                            <div class="grid_2 omega" id="coverOwned"></div>
                         </div>
                     </div>
                 </div>
             </div>
-            <div id="buyUpgrades" class="grid_4">
-            <div id="songs" class="grid_4 alpha omega">
-                <div id ="buySongsTitle"class="grid_4 alpha omega"></div>
-                    <div id="head" class="grid_4 alpha omega">
+            <div id="middle" class="grid_6">
+                <div id="songs" class="grid_6 alpha omega">
+                    <div id ="buySongsTitle"class="grid_6 alpha omega"></div>
+                    <div id="head" class="grid_6 alpha omega">
                         <div id="buySongsUpgrade" class="grid_2 alpha"></div>
-                        <div id="buySongsCost" class="grid_1"></div>
-                        <div id="buySongsEffect" class="grid_1 omega"></div>
+                        <div id="buySongsCost" class="grid_2"></div>
+                        <div id="buySongsEffect" class="grid_2 omega"></div>
                     </div>
-                    <div id="cover" class="grid_4 alpha omega">
+                    <div id="cover" class="grid_6 alpha omega">
                         <div id="coverBuyName" class="grid_2 alpha"></div>
-                        <div id="coverCost" class="grid_1"></div>
-                        <div id="coverBuyEffect" class="grid_1 omega"></div>
+                        <div id="coverCost" class="grid_2"></div>
+                        <div id="coverBuyEffect" class="grid_2 omega"></div>
                     </div>
                 </div>
+            </div>
+            <div id="right" class="grid_6">
             </div>
         </div>
     </body>
