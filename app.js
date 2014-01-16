@@ -35,9 +35,9 @@
 		}
 
 		var showBuyCover = function() {
-		    $('#coverBuyName').html('<a href="#" id="buyCover">Cover Version</a>');
+		    $('#buyCoverName').html('<a href="#" id="buyCover">Cover Version</a>');
 		    $('#coverCost').html(Math.round(coverCost * 100) / 100);
-		    $('#coverBuyEffect').html('+' + Math.round(coverEffect * 100) / 100 + '/Klick');
+		    $('#buyCoverEffect').html('+' + Math.round(coverEffect * 100) / 100 + '/Klick');
 		}
 
 		var clickRecord = function() {
