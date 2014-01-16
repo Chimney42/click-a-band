@@ -39,24 +39,16 @@
 		    $('#buySongsCost').html('Kosten');
 			$('#buySongsEffect').html('Gesamteffekt');
 		}
-
-		var showStats = function() {
-			showStatsTitle();
-			if (coverOwned > 0) {
-				showStatsCover();
-			}
-			if (ownSongOwned > 0) {
-				showStatsOwnSong();
-			}
-		}
-
+		
 		var showStatsCover = function() {
+			showStatsTitle();
 		    $('#coverName').html('Cover Version');
 			$('#coverEffect').html('+' + Math.round(coverEffect * 100) / 100 + '/Klick');
 		    $('#coverOwned').html(coverOwned);
 		}
 
 		var showStatsOwnSong = function() {
+			showStatsTitle();
 			$('#ownSongName').html('Eigener Song');
 			$('#ownSongEffect').html('+' + Math.round(ownSongEffect * 100) / 100 + '/s');
 			$('#ownSongOwned').html(ownSongOwned);
@@ -102,7 +94,7 @@
 		        coverCost = coverCost + (coverCost*0.05);
 		        showNotes();
 		        coverOn = true;
-		        showStats();
+		        showStatsCover();
 		        coverEffect = coverEffect + coverEffect*0.05;
 		        showBuyUpgrades();
 		    }
@@ -116,7 +108,7 @@
 				ownSongCost = ownSongCost + (ownSongCost*0.05);
 				showNotes();
 				ownSongOn = true;
-				showStats();
+				showStatsOwnSong();
 				ownSongEffect = ownSongEffect + ownSongEffect*0.05;
 				showBuyUpgrades();
 			}
