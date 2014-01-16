@@ -8,11 +8,11 @@ body {
     font-family: 'Ubuntu Condensed', sans-serif;
 }
 
-#gamePlay {
-    text-align: center;
-    margin-bottom: 40px;
+li {
+    list-style: none;
 }
 
-#bandImage {
-	text-align: center;
+#record {
+    text-align: center;
+    margin-bottom: 40px;
 }
