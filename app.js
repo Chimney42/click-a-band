@@ -10,34 +10,34 @@
 		var coverCost = 10;
 
 		var showNotes = function() {
-		    document.getElementById('notesTotal').innerHTML = 'Noten: ' + Math.round(notesTotal * 100) / 100;
-		    document.getElementById('notesPerClick').innerHTML = 'Noten pro Klick: ' + Math.round(notesPerClick * 100) / 100;
+		    $('#notesTotal').html('Noten: ' + Math.round(notesTotal * 100) / 100);
+		    $('#notesPerClick').html('Noten pro Klick: ' + Math.round(notesPerClick * 100) / 100);
 		}
 
 		var showStatsTitle = function() {
-		    document.getElementById('statsUpgrade').innerHTML = 'Upgrade';
-		    document.getElementById('statsEffect').innerHTML = 'Gesamteffekt';
-		    document.getElementById('statsOwned').innerHTML = 'In Besitz';
+		    $('#statsUpgrade').html('Upgrade');
+		    $('#statsEffect').html('Gesamteffekt');
+		    $('#statsOwned').html('In Besitz');
 		}
 
 		var showSongs = function() {
-		    document.getElementById('buySongsTitle').innerHTML = 'Songs';
-		    document.getElementById('buySongsUpgrade').innerHTML = 'Upgrade';
-		    document.getElementById('buySongsCost').innerHTML = 'Kosten';
-		    document.getElementById('buySongsEffect').innerHTML = 'Gesamteffekt';
+		    $('#buySongsTitle').html('Songs');
+		    $('#buySongsUpgrade').html('Upgrade');
+		    $('#buySongsCost').html('Kosten');
+			$('#buySongsEffect').html('Gesamteffekt');
 		}
 
 		var showStatsCover = function() {
 		    showStatsTitle();
-		    document.getElementById('coverName').innerHTML = 'Cover';
-		    document.getElementById('coverEffect').innerHTML = '+' + Math.round(coverEffect * 100) / 100 + '/Klick';
-		    document.getElementById('coverOwned').innerHTML = Math.round(coverOwned * 100) / 100;
+		    $('#coverName').html('Cover');
+			$('#coverEffect').html('+' + Math.round(coverEffect * 100) / 100 + '/Klick');
+		    $('#coverOwned').html(Math.round(coverOwned * 100) / 100);
 		}
 
 		var showBuyCover = function() {
-		    document.getElementById('coverBuyName').innerHTML = '<a href="#" id="buyCover">Cover Version</a>';
-		    document.getElementById('coverCost').innerHTML = Math.round(coverCost * 100) / 100;
-		    document.getElementById('coverBuyEffect').innerHTML = '+' + Math.round(coverEffect * 100) / 100 + '/Klick';
+		    $('#coverBuyName').html('<a href="#" id="buyCover">Cover Version</a>');
+		    $('#coverCost').html(Math.round(coverCost * 100) / 100);
+		    $('#coverBuyEffect').html('+' + Math.round(coverEffect * 100) / 100 + '/Klick');
 		}
 
 		var clickRecord = function() {
