@@ -2,6 +2,7 @@
 	$(document).on('ready', function() {
 		var notesTotal = 0;
 		var notesPerClick = 1;
+		var notesPerSecond = 0;
 		
 		var songsOn = false;
 
@@ -15,9 +16,15 @@
 		var ownSongEffect = 1;
 		var ownSongOwned = 0;
 
+		window.setInterval(function() {
+			notesTotal = notesTotal + notesPerSecond;
+			showNotes();
+		}, 1000)
+
 		var showNotes = function() {
 		    $('#notesTotal').html('Noten: ' + Math.round(notesTotal * 100) / 100);
 		    $('#notesPerClick').html('Noten pro Klick: ' + Math.round(notesPerClick * 100) / 100);
+	    	$('#notesPerSecond').html('Noten pro Sekunde: ' + Math.round(notesPerSecond * 100) / 100);
 		}
 
 		var showStatsTitle = function() {
@@ -33,11 +40,40 @@
 			$('#buySongsEffect').html('Gesamteffekt');
 		}
 
+		var showStats = function() {
+			showStatsTitle();
+			if (coverOwned > 0) {
+				showStatsCover();
+			}
+			if (ownSongOwned > 0) {
+				showStatsOwnSong();
+			}
+		}
+
 		var showStatsCover = function() {
-		    showStatsTitle();
 		    $('#coverName').html('Cover Version');
 			$('#coverEffect').html('+' + Math.round(coverEffect * 100) / 100 + '/Klick');
-		    $('#coverOwned').html(Math.round(coverOwned * 100) / 100);
+		    $('#coverOwned').html(coverOwned);
+		}
+
+		var showStatsOwnSong = function() {
+			$('#ownSongName').html('Eigener Song');
+			$('#ownSongEffect').html('+' + Math.round(ownSongEffect * 100) / 100 + '/s');
+			$('#ownSongOwned').html(ownSongOwned);
+		}
+
+		var showBuyUpgrades = function() {
+		    if (notesTotal >= coverCost || songsOn) {
+		        showSongs();
+		    }
+
+		    if (notesTotal >= coverCost || coverOn) {
+		        showBuyCover();
+		    }
+
+		    if (notesTotal >= ownSongCost || ownSongOn) {
+		    	showBuyOwnSong();
+		    }
 		}
 
 		var showBuyCover = function() {
@@ -54,20 +90,8 @@
 
 		var clickRecord = function() {
 		    notesTotal = notesTotal + notesPerClick;
-
-		    if (notesTotal >= coverCost || songsOn) {
-		        showSongs();
-		    }
-
-		    if (notesTotal >= coverCost || coverOn) {
-		        showBuyCover();
-		    }
-
-		    if (notesTotal >= ownSongCost || ownSongOn) {
-		    	showBuyOwnSong();
-		    }
-
 		    showNotes();
+		    showBuyUpgrades();
 		}
 
 		var buyCover = function() {
@@ -77,15 +101,25 @@
 		        notesPerClick = notesPerClick + coverEffect;
 		        coverCost = coverCost + (coverCost*0.05);
 		        showNotes();
-		        coverCost++;
 		        coverOn = true;
-		        showStatsCover();
+		        showStats();
 		        coverEffect = coverEffect + coverEffect*0.05;
-		        showBuyCover();
+		        showBuyUpgrades();
 		    }
 		}
 
 		var buyOwnSong = function() {
+			if (notesTotal >= ownSongCost) {
+				notesTotal = notesTotal - ownSongCost;
+				ownSongOwned++;
+				notesPerSecond = notesPerSecond + ownSongEffect;
+				ownSongCost = ownSongCost + (ownSongCost*0.05);
+				showNotes();
+				ownSongOn = true;
+				showStats();
+				ownSongEffect = ownSongEffect + ownSongEffect*0.05;
+				showBuyUpgrades();
+			}
 		}
 
 		$('#clickRecord').on('click', function (e) {
@@ -100,7 +134,7 @@
 
 		$('body').on('click', '#buyOwnSong', function (e) {
 			e.preventDefault();
-			buyCover();
+			buyOwnSong();
 		});
 	});
 })(jQuery);
