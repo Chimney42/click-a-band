@@ -2,12 +2,18 @@
 	$(document).on('ready', function() {
 		var notesTotal = 0;
 		var notesPerClick = 1;
+		
 		var songsOn = false;
 
 		var coverOn = false;
 		var coverOwned = 0;
 		var coverEffect = 1;
 		var coverCost = 10;
+
+		var ownSongCost = 50;
+		var ownSongOn = false;
+		var ownSongEffect = 1;
+		var ownSongOwned = 0;
 
 		var showNotes = function() {
 		    $('#notesTotal').html('Noten: ' + Math.round(notesTotal * 100) / 100);
@@ -29,7 +35,7 @@
 
 		var showStatsCover = function() {
 		    showStatsTitle();
-		    $('#coverName').html('Cover');
+		    $('#coverName').html('Cover Version');
 			$('#coverEffect').html('+' + Math.round(coverEffect * 100) / 100 + '/Klick');
 		    $('#coverOwned').html(Math.round(coverOwned * 100) / 100);
 		}
@@ -38,6 +44,12 @@
 		    $('#buyCoverName').html('<a href="#" id="buyCover">Cover Version</a>');
 		    $('#coverCost').html(Math.round(coverCost * 100) / 100);
 		    $('#buyCoverEffect').html('+' + Math.round(coverEffect * 100) / 100 + '/Klick');
+		}
+
+		var showBuyOwnSong = function() {
+			$('#buyOwnSongName').html('<a href="#" id="buyOwnSong">Eigener Song</a>');
+			$('#ownSongCost').html(Math.round(ownSongCost * 100) / 100);
+		    $('#buyOwnSongEffect').html('+' + Math.round(ownSongEffect * 100) / 100 + '/s');
 		}
 
 		var clickRecord = function() {
@@ -49,7 +61,11 @@
 
 		    if (notesTotal >= coverCost || coverOn) {
 		        showBuyCover();
-		    };
+		    }
+
+		    if (notesTotal >= ownSongCost || ownSongOn) {
+		    	showBuyOwnSong();
+		    }
 
 		    showNotes();
 		}
@@ -69,11 +85,20 @@
 		    }
 		}
 
+		var buyOwnSong = function() {
+		}
+
 		$('#clickRecord').on('click', function (e) {
 			e.preventDefault();
 			clickRecord();
 		});
+
 		$('body').on('click', '#buyCover', function (e) {
+			e.preventDefault();
+			buyCover();
+		});
+
+		$('body').on('click', '#buyOwnSong', function (e) {
 			e.preventDefault();
 			buyCover();
 		});
