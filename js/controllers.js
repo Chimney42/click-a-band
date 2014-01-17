@@ -1,19 +1,18 @@
 var clickABand = angular.module('clickABand', []);
 
-
-
-clickABand.controller('RecordController', function($scope, $rootScope) {
-    $scope.notesTotal = 0;
+clickABand.controller('StatsController', function($scope, $rootScope) {
+    $rootScope.notesTotal = 0;
+    $rootScope.songOn = false;
     $scope.notesPerClick = 1;
     $scope.notesPerHour = 0;
     $scope.notesInterval = 'Stunde';
     $scope.clickRecord = function() {
-        $scope.notesTotal = $scope.notesTotal + $scope.notesPerClick;
+        $rootScope.notesTotal = $rootScope.notesTotal + $scope.notesPerClick;
     }
 });
 
-clickABand.controller('SongController', function($scope) {
-    $scope.songOn = ''
+clickABand.controller('SongController', function($scope, $rootScope) {
+    $scope.title = 'Songs';
     $scope.songs = [
         {
             'title': 'Cover Songs',
@@ -23,5 +22,8 @@ clickABand.controller('SongController', function($scope) {
     ];
     $scope.buy = function(song) {
         console.log(arguments)
+    }
+    $scope.isOn = function() {
+        return $rootScope.notesTotal >= 10;
     }
 });

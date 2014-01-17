@@ -11,16 +11,17 @@
         <div class="container_18">
             <div id="title" class="grid_18">Click A Band</div>
             <div id="left" class="grid_6">
-                <div id="record" class="grid_6 alpha omega" ng-controller="RecordController">
+                <div id="stats" class="grid_6 alpha omega" ng-controller="StatsController">
                     <img src="images/record.jpg" ng-click="clickRecord()" width="200" height="200"></img>
                     <div>Noten: {{ notesTotal }}</div>
                     <div>Noten pro Klick: {{ notesPerClick }}</div>
                     <div>Noten pro {{ notesInterval }}: {{ notesPerHour }}</div>
+                    <div><img src="images/guitar.png"></img></div>
                 </div>
             </div>
             <div id="middle" class="grid_6">
-                <div id="song" class="grid_6 alpha omega" ng-controller="SongController">
-                    <div class="grid_6 alpha omega">{{ songOn }}</div>
+                <div id="song" class="grid_6 alpha omega" ng-controller="SongController" ng-show="isOn()">
+                    <div class="grid_6 alpha omega">{{ title }}</div>
                     <li ng-repeat="song in songs" ng-click="buy(song)">
                         <div class="grid_2 alpha">{{ song.title }}</div>
                         <div class="grid_2">+{{ song.effect }}/Klick</div>
