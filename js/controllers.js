@@ -32,15 +32,42 @@ clickABand.controller('SongController', ['$scope', 'gameService',
             {
                 'title': 'Cover Songs',
                 'effect': 1,
+                'effectUnit': 'Klick',
                 'cost': 10,
                 'owned': 0,
                 'on': false
             },
             {
                 'title': 'Eigene Songs',
-                'effect': 1
-
-
+                'effect': 1,
+                'effectUnit': 'Stunde',
+                'cost': 100,
+                'owned': 0,
+                'on': false
+            },
+            {
+                'title': 'Lokaler Hit',
+                'effect': 1,
+                'effectUnit': 'Minute',
+                'cost': 1000,
+                'owned': 0,
+                'on': false
+            },
+            {
+                'title': 'Nationaler Hit',
+                'effect': 1,
+                'effectUnit': 'Sekunde',
+                'cost': 10000,
+                'owned': 0,
+                'on': false
+            },
+            {
+                'title': 'Welthit',
+                'effect': '60',
+                'effectUnit': 'Sekunde',
+                'cost': 100000,
+                'owned': 0,
+                'on': false
             }
         ];
 
