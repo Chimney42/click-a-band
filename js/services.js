@@ -13,29 +13,32 @@ clickABand.factory('gameService', ['$rootScope', function($rootScope) {
     }
 
     GameService.prototype.getNotesTotal = function() {
-        return this.notesTotal;
+        return this.round(this.notesTotal);
     };
 
     GameService.prototype.clickRecord = function() {
-        this.notesTotal += this.notesPerClick;
+        this.notesTotal += this.calculateNotesPerClick();
         $rootScope.$broadcast('notesChanged');
         return this.notesTotal;
     };
 
-    GameService.prototype.pay = function(cost) {
-        if(this.notesTotal >= cost) {
-            this.notesTotal -= cost;
+    GameService.prototype.buy = function(song) {
+        if(this.notesTotal >= song.cost) {
+            this.notesTotal -= song.cost;
+            song.cost = this.round(song.cost + song.cost*0.1);
+            song.owned++;
+            if('Cover Songs' === song.title) {
+                this.clickEffect = song.effect;
+                this.clickOwned = song.owned
+            } else {
+
+            }
             $rootScope.$broadcast('notesChanged');
-            return true;
         }
-        return false;
     };
 
-    GameService.prototype.setNewClickEffect = function(effect, owned) {
-        this.clickEffect = effect;
-        this.clickOwned = owned;
-        $rootScope.$broadcast('notesChanged');
+    GameService.prototype.round = function(number) {
+        return Math.round(number * 100) / 100;
     }
-
     return new GameService();
 }]);

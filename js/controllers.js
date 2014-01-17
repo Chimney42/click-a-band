@@ -1,6 +1,6 @@
 clickABand.controller('StatsController', ['$scope', 'gameService',
     function ($scope, gameService) {
-        $scope.clickRecord = function () {
+        $scope.clickRecord = function() {
             gameService.clickRecord();
         };
 
@@ -9,11 +9,11 @@ clickABand.controller('StatsController', ['$scope', 'gameService',
         $scope.notesPerHour = 0;
         $scope.notesInterval = 'Stunde';
 
-        $scope.$on('notesChanged', function (e) {
+        $scope.$on('notesChanged', function(e) {
             updateNotes();
         });
 
-        var updateNotes = function () {
+        var updateNotes = function() {
             $scope.notesTotal = gameService.getNotesTotal();
             $scope.notesPerClick = gameService.calculateNotesPerClick();
         }
@@ -21,7 +21,7 @@ clickABand.controller('StatsController', ['$scope', 'gameService',
 ]);
 
 clickABand.controller('SongController', ['$scope', 'gameService',
-    function ($scope, gameService) {
+    function($scope, gameService) {
         $scope.songOn = false;
         $scope.title = 'Songs';
         $scope.effect = 'Effekt';
@@ -31,25 +31,35 @@ clickABand.controller('SongController', ['$scope', 'gameService',
         $scope.songs = [
             {
                 'title': 'Cover Songs',
-                'effect': '1',
-                'cost': '10',
-                'owned': '0'
+                'effect': 1,
+                'cost': 10,
+                'owned': 0,
+                'on': false
+            },
+            {
+                'title': 'Eigene Songs',
+                'effect': 1
+
+
             }
         ];
 
         $scope.buy = function (song) {
-            if(gameService.pay(song.cost)) {
-                if('Cover Songs' === song.title) {
-                    song.owned++;
-                    gameService.setNewClickEffect(song.effect, song.owned);
-                }
-            }
+           gameService.buy(song)
+
         };
 
+        $scope.isOn = function(song) {
+            return song.on;
+        }
+
         $scope.$on('notesChanged', function () {
-            if (gameService.getNotesTotal() >= 10) {
-                $scope.songOn = true
-            }
+            $scope.songs.forEach(function(song) {
+                if(gameService.getNotesTotal() >= song.cost) {
+                    $scope.songOn = true;
+                    song.on = true;
+                }
+            })
         });
 
     }
