@@ -1,20 +1,18 @@
 var clickABand = angular.module('clickABand', []);
  
-clickABand.factory('gameService', function() {
-//Konstruktorfunktion für GameService Objekte
+clickABand.factory('gameService', ['$rootScope', function($rootScope) {
  var GameService = function() {
-     //Instanzproperties
   this.notesTotal = 0;
   this.notesPerClick = 1;
   this.notesPerHour = 0;
   this.songOn = false;
  };
-    //Methoden auf dem "prototype" definiert, so dass diese nicht für jede Instanz kopiert werden, sondern nur einen Scope belegen -> prototype Scope des Gameservice
-  GameService.prototype.getTotalNotes = function() {
+
+ GameService.prototype.getNotesTotal = function() {
    return this.notesTotal;
   }
 
-  GameService.prototype.getTotalNotesgetNotesPerClick = function() {
+  GameService.prototype.getNotesPerClick = function() {
    return this.notesPerClick;
   }
 
@@ -23,9 +21,10 @@ clickABand.factory('gameService', function() {
   }
 
   GameService.prototype.clickRecord = function() {
-   this.notesTotal += notesPerClick;
+   this.notesTotal += this.notesPerClick;
+   $rootScope.$broadcast('recordClicked');
    return this.notesTotal;
   }
-    //Neue Instanz zurückgeben
+ 
  return new GameService();
-});
+}]);

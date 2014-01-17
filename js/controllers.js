@@ -1,10 +1,22 @@
-var clickABand = angular.module('clickABand', ['gameService']);
+//var clickABand = angular.module('clickABand', ['gameService']);
 
-clickABand.controller('StatsController', function($scope, gameService) {
-    $scope.clickRecord = function() {
-        gameService.clickRecord();
+clickABand.controller('StatsController', ['$scope', 'gameService', 
+    function($scope, gameService) {
+        $scope.clickRecord = function() {
+            gameService.clickRecord();
+        }
+
+        $scope.notesTotal = 0;
+
+        $scope.$on('recordClicked', function(e) {
+            updateNotesTotal();
+        })
+
+        var updateNotesTotal = function() {
+            $scope.notesTotal = gameService.getNotesTotal();
+        }
     }
-});
+]);
 
 clickABand.controller('SongController', function($scope, $rootScope) {
     $scope.title = 'Songs';
