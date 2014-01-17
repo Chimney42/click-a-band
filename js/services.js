@@ -1,30 +1,27 @@
 var clickABand = angular.module('clickABand', []);
- 
+
 clickABand.factory('gameService', ['$rootScope', function($rootScope) {
- var GameService = function() {
-  this.notesTotal = 0;
-  this.notesPerClick = 1;
-  this.notesPerHour = 0;
-  this.songOn = false;
- };
+    var GameService = function () {
+        this.notesTotal = 0;
+        this.notesPerClick = 1;
+    };
 
- GameService.prototype.getNotesTotal = function() {
-   return this.notesTotal;
-  }
+    GameService.prototype.getNotesTotal = function() {
+        return this.notesTotal;
+    };
 
-  GameService.prototype.getNotesPerClick = function() {
-   return this.notesPerClick;
-  }
+    GameService.prototype.clickRecord = function() {
+        this.notesTotal += this.notesPerClick;
+        $rootScope.$broadcast('recordClicked');
+        return this.notesTotal;
+    };
 
-  GameService.prototype.getNotesPerHour = function() {
-   return this.notesPerHour;
-  }
+    GameService.prototype.pay = function(cost) {
+        if(this.notesTotal >= cost) {
+            this.notesTotal -= cost;
+            $rootScope.$broadcast('recordClicked')
+        }
+    };
 
-  GameService.prototype.clickRecord = function() {
-   this.notesTotal += this.notesPerClick;
-   $rootScope.$broadcast('recordClicked');
-   return this.notesTotal;
-  }
- 
- return new GameService();
+    return new GameService();
 }]);
