@@ -7,6 +7,8 @@ clickABand.controller('StatsController', ['$scope', 'gameService',
         }
 
         $scope.notesTotal = 0;
+        $scope.notesPerClick = 1;
+        $scope.notesPerHour = 0;
 
         $scope.$on('recordClicked', function(e) {
             updateNotesTotal();
