@@ -6,11 +6,36 @@ clickABand.factory('gameService', ['$rootScope', function($rootScope) {
         this.notesPerClick = 1;
         this.clickEffect = 0;
         this.clickOwned = 0;
+        this.perHourEffects = {
+            'effects': [],
+            'addEffect': function(song) {
+                var perHourEffect = this.findEffect(song.title);
+                if(perHourEffect) {
+                    perHourEffect.owned += 1;
+                } else {
+                    this.effects.push({
+                        'title': song.title,
+                        'effect': song.effect,
+                        'unit': song.effectUnit,
+                        'owned': song.owned
+                    })
+                }
+            },
+            'findEffect': function(title) {
+                var r = false;
+                this.effects.forEach(function(perHourEffect) {
+                    if(perHourEffect.title === title) {
+                        r = perHourEffect;
+                    }
+                });
+                return r;
+            }
+        };
     };
 
     GameService.prototype.calculateNotesPerClick = function() {
         return this.notesPerClick + this.clickEffect * this.clickOwned;
-    }
+    };
 
     GameService.prototype.getNotesTotal = function() {
         return this.round(this.notesTotal);
@@ -22,16 +47,16 @@ clickABand.factory('gameService', ['$rootScope', function($rootScope) {
         return this.notesTotal;
     };
 
-    GameService.prototype.buy = function(song) {
+    GameService.prototype.buySong = function(song) {
         if(this.notesTotal >= song.cost) {
             this.notesTotal -= song.cost;
             song.cost = this.round(song.cost + song.cost*0.1);
             song.owned++;
             if('Cover Songs' === song.title) {
                 this.clickEffect = song.effect;
-                this.clickOwned = song.owned
+                this.clickOwned = song.owned;
             } else {
-
+                this.addPerHourEffect(song);
             }
             $rootScope.$broadcast('notesChanged');
         }
@@ -39,6 +64,15 @@ clickABand.factory('gameService', ['$rootScope', function($rootScope) {
 
     GameService.prototype.round = function(number) {
         return Math.round(number * 100) / 100;
+    };
+
+    GameService.prototype.calculateNotesPerHour = function() {
+        console.log(this.perHourEffects);
     }
+
+    GameService.prototype.addPerHourEffect = function(song) {
+        this.perHourEffects.addEffect(song);
+    }
+
     return new GameService();
 }]);

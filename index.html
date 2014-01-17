@@ -30,7 +30,7 @@
                         <div id="songCost" class="grid_2">{{ cost }}</div>
                         <div id="songOwned" class="grid_2 omega">{{ owned }}</div>
                     </div>
-                    <li ng-repeat="song in songs" ng-click="buy(song)" ng-show="isOn(song)">
+                    <li ng-repeat="song in songs" ng-click="buySong(song)" ng-show="isOn(song)">
                         <div class="grid_2 alpha">{{ song.title }}</div>
                         <div class="grid_2">+{{ song.effect }}/{{ song.effectUnit }}</div>
                         <div class="grid_2">{{ song.cost }} Noten</div>
