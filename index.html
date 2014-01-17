@@ -11,8 +11,8 @@
     <body>
         <div class="container_18">
             <div id="title" class="grid_18">Click A Band</div>
-            <div id="left" class="grid_6">
-                <div id="stats" class="grid_6 alpha omega" ng-controller="StatsController">
+            <div id="left" class="grid_4">
+                <div id="stats" class="grid_4 alpha omega" ng-controller="StatsController">
                     <img src="images/record.jpg" ng-click="clickRecord()" width="200" height="200" />
                     <div>Noten: {{ notesTotal }}</div>
                     <div>Noten pro Klick: {{ notesPerClick }}</div>
@@ -20,17 +20,19 @@
                     <div><img src="images/guitar.png" /></div>
                 </div>
             </div>
-            <div id="middle" class="grid_6">
-                <div id="song" class="grid_6 alpha omega" ng-controller="SongController" ng-show="songOn">
-                    <div id="songTitle" class="grid_6 alpha omega">
+            <div id="middle" class="grid_8">
+                <div id="song" class="grid_8 alpha omega" ng-controller="SongController" ng-show="songOn">
+                    <div id="songTitle" class="grid_8 alpha omega">
                         <div id="songName" class="grid_2 alpha">{{ title }}</div>
                         <div id="songEffect" class="grid_2">{{ effect }}</div>
-                        <div id="songCost" class="grid_2 omega">{{ cost }}</div>
+                        <div id="songCost" class="grid_2">{{ cost }}</div>
+                        <div id="songOwned" class="grid_2 omega">{{ owned }}</div>
                     </div>
                     <li ng-repeat="song in songs" ng-click="buy(song)">
                         <div class="grid_2 alpha">{{ song.title }}</div>
                         <div class="grid_2">+{{ song.effect }}/Klick</div>
-                        <div class="grid_2 omega">{{ song.cost }} Noten</div>
+                        <div class="grid_2">{{ song.cost }} Noten</div>
+                        <div class="grid_2 omega">{{ song.owned }}</div>
                     </li>
                 </div>
             </div>
