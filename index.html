@@ -2,6 +2,7 @@
     <head>
         <title>Click A Band</title>
         <script src="js/angular.js"></script>
+        <script src="js/services.js"></script>
         <script src="js/controllers.js"></script>
         <link rel="stylesheet" type="text/css" href="css/1600.css">
         <link rel="stylesheet" type="text/css" href="css/main.css">
@@ -22,7 +23,7 @@
             <div id="middle" class="grid_6">
                 <div id="song" class="grid_6 alpha omega" ng-controller="SongController" ng-show="isOn()">
                     <div class="grid_6 alpha omega">{{ title }}</div>
-                    <li ng-repeat="song in songs" ng-click="buy(song)">
+                    <li ng-repeat="song in songs" ng-click="buy(song)" ng-show="">
                         <div class="grid_2 alpha">{{ song.title }}</div>
                         <div class="grid_2">+{{ song.effect }}/Klick</div>
                         <div class="grid_2 omega">{{ song.cost }} Noten</div>

@@ -1,13 +1,8 @@
-var clickABand = angular.module('clickABand', []);
+var clickABand = angular.module('clickABand', ['gameService']);
 
-clickABand.controller('StatsController', function($scope, $rootScope) {
-    $rootScope.notesTotal = 0;
-    $rootScope.songOn = false;
-    $scope.notesPerClick = 1;
-    $scope.notesPerHour = 0;
-    $scope.notesInterval = 'Stunde';
+clickABand.controller('StatsController', function($scope, gameService) {
     $scope.clickRecord = function() {
-        $rootScope.notesTotal = $rootScope.notesTotal + $scope.notesPerClick;
+        gameService.clickRecord();
     }
 });
 
@@ -24,6 +19,6 @@ clickABand.controller('SongController', function($scope, $rootScope) {
         console.log(arguments)
     }
     $scope.isOn = function() {
-        return $rootScope.notesTotal >= 10;
+        return !!$rootScope.songOn;
     }
 });
