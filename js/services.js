@@ -65,7 +65,7 @@ clickABand.factory('gameService', ['$rootScope', '$interval',
                 this.notesTotal -= song.cost;
                 song.cost = this.roundToDec(song.cost + song.cost * 0.1);
                 song.owned++;
-                if ('Cover Songs' === song.title) {
+                if ('Cover Song' === song.title) {
                     this.clickEffect = song.effect;
                     this.clickOwned = song.owned;
                 } else {
@@ -144,7 +144,7 @@ clickABand.factory('gameService', ['$rootScope', '$interval',
         };
 
         GameService.prototype.increaseSongEffect = function(research) {
-            if ('Cover Songs' === research.song) {
+            if ('Cover Song' === research.song) {
                 this.clickEffect += this.clickEffect * research.factor;
             } else {
                 var perHourEffect = this.perHourEffects.findEffect(research.song);

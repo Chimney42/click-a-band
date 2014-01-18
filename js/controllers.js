@@ -30,7 +30,7 @@ clickABand.controller('SongController', ['$scope', 'gameService',
 
         $scope.songs = [
             {
-                'title': 'Cover Songs',
+                'title': 'Cover Song',
                 'effect': 1,
                 'effectUnit': 'Klick',
                 'cost': 10,
@@ -38,7 +38,7 @@ clickABand.controller('SongController', ['$scope', 'gameService',
                 'on': false
             },
             {
-                'title': 'Eigene Songs',
+                'title': 'Eigener Song',
                 'effect': 1,
                 'effectUnit': 'Stunde',
                 'cost': 100,
@@ -127,10 +127,54 @@ clickABand.controller('ResearchController', ['$scope', 'gameService',
                 'cost': 50,
                 'on': false,
                 'type': 'increaseSongEffect',
-                'song': 'Cover Songs',
+                'song': 'Cover Song',
                 'factor': 0.05,
                 'getEffectDesc':  function() {
                     return '+' + gameService.roundToDec(this.factor*100) + '% auf Effekt durch Cover Songs';
+                }
+            },
+            {
+                'title': 'Songwriting',
+                'cost': 500,
+                'on': false,
+                'type': 'increaseSongEffect',
+                'song': 'Eigener Song',
+                'factor': 0.05,
+                'getEffectDesc': function() {
+                    return '+' + gameService.roundToDec(this.factor*100) + '% auf Effekt durch Eigene Songs'
+                }
+            },
+            {
+                'title': 'Lokale Promo',
+                'cost': 5000,
+                'on': false,
+                'type': 'increaseSongEffect',
+                'song': 'Lokaler Hit',
+                'factor': 0.05,
+                'getEffectDesc': function() {
+                    return '+' + gameService.roundToDec(this.factor*100) + '% auf Effekt durch Lokale Hits'
+                }
+            },
+            {
+                'title': 'Fernsehauftritt',
+                'cost': 50000,
+                'on': false,
+                'type': 'increaseSongEffect',
+                'song': 'Nationaler Hit',
+                'factor': 0.05,
+                'getEffectDesc': function() {
+                    return '+' + gameService.roundToDec(this.factor*100) + '% auf Effekt durch Nationale Hits'
+                }
+            },
+            {
+                'title': 'Internationaler Festivalgig',
+                'cost': 500000,
+                'on': false,
+                'type': 'increaseSongEffect',
+                'song': 'Welthit',
+                'factor': 0.05,
+                'getEffectDesc': function() {
+                    return '+' + gameService.roundToDec(this.factor*100) + '% auf Effekt durch Welthits'
                 }
             }
         ];
