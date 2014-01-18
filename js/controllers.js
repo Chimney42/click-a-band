@@ -176,6 +176,16 @@ clickABand.controller('ResearchController', ['$scope', 'gameService',
                 'getEffectDesc': function() {
                     return '+' + gameService.roundToDec(this.factor*100) + '% auf Effekt durch Welthits'
                 }
+            },
+            {
+                'title': 'Plattenvertrag',
+                'cost': 1000,
+                'on': false,
+                'type': 'unlock',
+                'feature': 'album',
+                'getEffectDesc': function() {
+                    return 'Schaltet Alben frei'
+                }
             }
         ];
 
@@ -202,6 +212,46 @@ clickABand.controller('ResearchController', ['$scope', 'gameService',
             } else {
                 return 'hoverRed';
             }
-        }
+        };
+
+        $scope.$on('unlock', function(name, args) {
+            var i;
+            $scope.researchList.forEach(function(research, index) {
+                if (research.feature === args[0]) {
+                    i = index;
+                }
+            });
+            if (!isNaN(i)) {
+                $scope.researchList.splice(i, 1);
+            }
+        })
+    }
+]);
+
+clickABand.controller('AlbumController', ['$scope', 'gameService',
+    function($scope, gameService) {
+        $scope.albumOn = false;
+        $scope.title = 'Album';
+        $scope.reqSongs = 'Songs benoetigt';
+        $scope.cost = 'Kosten';
+
+        $scope.albums = [
+            {
+                'title': 'Single',
+                'reqSongs': 5,
+                'cost': 1000
+            },
+            {
+                'title': 'Album',
+                'reqSongs': 20,
+                'cost': 10000
+            }
+        ];
+
+        $scope.$on('unlock', function(name, args) {
+            if ('album' === args[0]) {
+                $scope.albumOn = true;
+            }
+        })
     }
 ]);

@@ -132,13 +132,17 @@ clickABand.factory('gameService', ['$rootScope', '$interval',
         GameService.prototype.buyResearch = function(research) {
             if (this.notesTotal >= research.cost) {
                 this.notesTotal -= research.cost;
-                research.cost = research.cost * 3;
-                research.owned++;
                 switch (research.type) {
                     case (this.researchTypes[0]):
+                        research.cost = research.cost * 3;
+                        research.owned++;
                         this.increaseSongEffect(research);
+                        research.factor += research.factor / 2;
+                        break;
+                    case (this.researchTypes[1]):
+                        this.unlock(research);
+                        break;
                 }
-                research.factor += research.factor / 2;
                 $rootScope.$broadcast('notesChanged');
             }
         };
@@ -153,6 +157,10 @@ clickABand.factory('gameService', ['$rootScope', '$interval',
                 }
             }
             $rootScope.$broadcast('effectChanged', [research.song, research.factor]);
+        };
+
+        GameService.prototype.unlock = function(research) {
+            $rootScope.$broadcast('unlock', [research.feature])
         };
 
         return new GameService();

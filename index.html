@@ -30,11 +30,23 @@
                 <div id="songCost" class="grid_2">{{ cost }}</div>
                 <div id="songOwned" class="grid_2 omega">{{ owned }}</div>
             </div>
-            <div class="grid_8 alpha omega hoverContainer" ng-repeat="song in songs" ng-click="buySong(song)" ng-show="isOn(song)" ng-class="hoverColor(song)">
+            <div class="grid_8 alpha omega" ng-repeat="song in songs" ng-click="buySong(song)" ng-show="isOn(song)" ng-class="hoverColor(song)">
                 <div class="grid_2 alpha">{{ song.title }}</div>
                 <div class="grid_2">+{{ song.effect }}/{{ song.effectUnit }}</div>
                 <div class="grid_2">{{ song.cost }} Noten</div>
                 <div class="grid_2 omega">{{ song.owned }}</div>
+            </div>
+        </div>
+        <div id="album" class="grid_8 alpha omega feature" ng-controller="AlbumController" ng-show="albumOn">
+            <div id="albumTitle" class="grid_8 alpha omega feature-title">
+                <div id="albumName" class="grid_3 alpha">{{ title }}</div>
+                <div id="albumReqSongs" class="grid_3">{{ reqSongs }}</div>
+                <div id="albumCost" class="grid_2 omega">{{ cost }}</div>
+            </div>
+            <div class="grid_8 alpha omega" ng-repeat="album in albums" ng-click="buyAlbum(album)">
+                <div class="grid_3 alpha">{{ album.title }}</div>
+                <div class="grid_3">{{ album.reqSongs }} Songs</div>
+                <div class="grid_2 omega">{{ album.cost }} Noten</div>
             </div>
         </div>
     </div>
