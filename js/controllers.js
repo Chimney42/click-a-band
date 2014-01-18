@@ -16,7 +16,7 @@ clickABand.controller('StatsController', ['$scope', 'gameService',
             $scope.notesTotal = gameService.getNotesTotal();
             $scope.notesPerClick = gameService.calculateNotesPerClick();
             $scope.notesPerInterval = gameService.getNotesPerInterval();
-        }
+        };
     }
 ]);
 
@@ -73,7 +73,6 @@ clickABand.controller('SongController', ['$scope', 'gameService',
 
         $scope.buySong = function (song) {
            gameService.buySong(song)
-
         };
 
         $scope.isOn = function(song) {
