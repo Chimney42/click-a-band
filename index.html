@@ -1,45 +1,57 @@
 <html ng-app="clickABand">
-    <head>
-        <title>Click A Band</title>
-        <script src="js/angular.js"></script>
-        <script src="js/services.js"></script>
-        <script src="js/controllers.js"></script>
-        <link rel="stylesheet" type="text/css" href="css/1600.css">
-        <link rel="stylesheet" type="text/css" href="css/main.css">
-        <link href='http://fonts.googleapis.com/css?family=Ubuntu+Condensed&subset=latin,latin-ext' rel='stylesheet' type='text/css'>
-    </head>
-    <body>
-        <div class="container_18">
-            <div id="title" class="grid_18">Click A Band</div>
-            <div id="left" class="grid_4">
-                <div id="stats" class="grid_4 alpha omega" ng-controller="StatsController">
-                    <div id="clickRecord" ng-click="clickRecord()">
-                        <img src="images/record.jpg" width="200" height="200" />
-                    </div>
-                    <div>Noten: {{ notesTotal }}</div>
-                    <div>Noten pro Klick: {{ notesPerClick }}</div>
-                    <div>Noten pro {{ notesPerInterval }}</div>
-                    <div><img src="images/guitar.png" /></div>
-                </div>
+<head>
+    <title>Click A Band</title>
+    <script src="js/angular.js"></script>
+    <script src="js/services.js"></script>
+    <script src="js/controllers.js"></script>
+    <link rel="stylesheet" type="text/css" href="css/1600.css">
+    <link rel="stylesheet" type="text/css" href="css/main.css">
+    <link href='http://fonts.googleapis.com/css?family=Carrois+Gothic+SC' rel='stylesheet' type='text/css'>
+</head>
+<body>
+<div class="container_18">
+    <div id="title" class="grid_18">Click A Band</div>
+    <div id="left" class="grid_4">
+        <div id="stats" class="grid_4 alpha omega" ng-controller="StatsController">
+            <div id="clickRecord" ng-click="clickRecord()">
+                <img src="images/record.jpg" width="200" height="200" />
             </div>
-            <div id="middle" class="grid_8">
-                <div id="song" class="grid_8 alpha omega" ng-controller="SongController" ng-show="songOn">
-                    <div id="songTitle" class="grid_8 alpha omega">
-                        <div id="songName" class="grid_2 alpha">{{ title }}</div>
-                        <div id="songEffect" class="grid_2">{{ effect }}</div>
-                        <div id="songCost" class="grid_2">{{ cost }}</div>
-                        <div id="songOwned" class="grid_2 omega">{{ owned }}</div>
-                    </div>
-                    <li ng-repeat="song in songs" ng-click="buySong(song)" ng-show="isOn(song)">
-                        <div class="grid_2 alpha">{{ song.title }}</div>
-                        <div class="grid_2">+{{ song.effect }}/{{ song.effectUnit }}</div>
-                        <div class="grid_2">{{ song.cost }} Noten</div>
-                        <div class="grid_2 omega">{{ song.owned }}</div>
-                    </li>
-                </div>
-            </div>
-            <div id="right" class="grid_6">
-            </div>
+            <div>Noten: {{ notesTotal }}</div>
+            <div>Noten pro Klick: {{ notesPerClick }}</div>
+            <div>Noten pro {{ notesPerInterval }}</div>
+            <div><img src="images/guitar.png" /></div>
         </div>
-    </body>
+    </div>
+    <div id="middle" class="grid_8">
+        <div id="song" class="grid_8 alpha omega feature" ng-controller="SongController" ng-show="songOn">
+            <div id="songTitle" class="grid_8 alpha omega feature-title">
+                <div id="songName" class="grid_2 alpha">{{ title }}</div>
+                <div id="songEffect" class="grid_2">{{ effect }}</div>
+                <div id="songCost" class="grid_2">{{ cost }}</div>
+                <div id="songOwned" class="grid_2 omega">{{ owned }}</div>
+            </div>
+            <li ng-repeat="song in songs" ng-click="buySong(song)" ng-show="isOn(song)">
+                <div class="grid_2 alpha">{{ song.title }}</div>
+                <div class="grid_2">+{{ song.effect }}/{{ song.effectUnit }}</div>
+                <div class="grid_2">{{ song.cost }} Noten</div>
+                <div class="grid_2 omega">{{ song.owned }}</div>
+            </li>
+        </div>
+    </div>
+    <div id="right" class="grid_6">
+        <div id="research" class="grid_6 alpha omega feature" ng-controller="ResearchController" ng-show="researchOn">
+            <div id="researchTitle" class="grid_6 alpha omega feature-title">
+                <div id="researchName" class="grid_2 alpha">{{ title }}</div>
+                <div id="researchEffect" class="grid_2">{{ effectDesc }}</div>
+                <div id="researchCost" class="grid_2 omega">{{ cost }}</div>
+            </div>
+            <li ng-repeat="research in researchList" ng-click="buyResearch(research)" ng-show="isOn(research)">
+                <div class="grid_2 alpha">{{ research.title }}</div>
+                <div class="grid_2">{{ research.effectDesc }}</div>
+                <div class="grid_2 omega">{{ research.cost }}</div>
+            </li>
+        </div>
+    </div>
+</div>
+</body>
 </html>

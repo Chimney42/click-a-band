@@ -72,12 +72,12 @@ clickABand.controller('SongController', ['$scope', 'gameService',
         ];
 
         $scope.buySong = function (song) {
-           gameService.buySong(song)
+            gameService.buySong(song)
         };
 
         $scope.isOn = function(song) {
             return song.on;
-        }
+        };
 
         $scope.$on('notesChanged', function () {
             $scope.songs.forEach(function(song) {
@@ -87,6 +87,37 @@ clickABand.controller('SongController', ['$scope', 'gameService',
                 }
             })
         });
+    }
 
+]);
+
+clickABand.controller('ResearchController', ['$scope', 'gameService',
+    function($scope, gameService) {
+        $scope.researchOn = false;
+        $scope.title = 'Forschung';
+        $scope.cost = 'Kosten';
+        $scope.effectDesc = 'Beschreibung';
+
+        $scope.researchList = [
+            {
+                'title': 'Verbessertes Songwriting',
+                'effectDesc': '+5% auf alle Effekte durch Songs',
+                'cost': 50,
+                'on': false
+            }
+        ];
+
+        $scope.isOn = function(research) {
+            return research.on;
+        };
+
+        $scope.$on('notesChanged', function() {
+            $scope.researchList.forEach(function(research) {
+                if(gameService.getNotesTotal() >= research.cost) {
+                    $scope.researchOn = true;
+                    research.on = true;
+                }
+            });
+        });
     }
 ]);

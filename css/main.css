@@ -2,10 +2,11 @@
     text-align: center;
     margin-bottom: 20px;
     font-size: 40px;
+    font-weight: bold;
 }
 
 body {
-    font-family: 'Ubuntu Condensed', sans-serif;
+    font-family: 'Carrois Gothic SC', sans-serif;
 }
 
 li {
@@ -19,4 +20,13 @@ li {
 
 [ng-click] {
     cursor: pointer;
+}
+
+.feature-title {
+    font-size: 17px;
+    font-weight: bold;
+}
+
+.feature {
+    border: 1px solid black;
 }
