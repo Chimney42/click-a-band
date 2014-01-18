@@ -4,15 +4,15 @@
     <script src="js/angular.js"></script>
     <script src="js/services.js"></script>
     <script src="js/controllers.js"></script>
-    <link rel="stylesheet" type="text/css" href="css/1600.css">
+    <link rel="stylesheet" type="text/css" href="css/1920.css">
     <link rel="stylesheet" type="text/css" href="css/main.css">
     <link href='http://fonts.googleapis.com/css?family=Carrois+Gothic+SC' rel='stylesheet' type='text/css'>
 </head>
 <body>
-<div class="container_18">
-    <div id="title" class="grid_18">Click A Band</div>
-    <div id="left" class="grid_4">
-        <div id="stats" class="grid_4 alpha omega" ng-controller="StatsController">
+<div class="container_24">
+    <div id="title" class="grid_24">Click A Band</div>
+    <div id="left" class="grid_6">
+        <div id="stats" class="grid_6 alpha omega" ng-controller="StatsController">
             <div id="clickRecord" ng-click="clickRecord()">
                 <img src="images/record.jpg" width="200" height="200" />
             </div>
@@ -38,17 +38,17 @@
             </li>
         </div>
     </div>
-    <div id="right" class="grid_6">
-        <div id="research" class="grid_6 alpha omega feature" ng-controller="ResearchController" ng-show="researchOn">
-            <div id="researchTitle" class="grid_6 alpha omega feature-title">
-                <div id="researchName" class="grid_2 alpha">{{ title }}</div>
-                <div id="researchEffect" class="grid_2">{{ effectDesc }}</div>
-                <div id="researchCost" class="grid_2 omega">{{ cost }}</div>
+    <div id="right" class="grid_10">
+        <div id="research" class="grid_10 alpha omega feature" ng-controller="ResearchController" ng-show="researchOn">
+            <div id="researchTitle" class="grid_10 alpha omega feature-title">
+                <div id="researchName" class="grid_4 alpha">{{ title }}</div>
+                <div id="researchEffect" class="grid_5">{{ effectDesc }}</div>
+                <div id="researchCost" class="grid_1 omega">{{ cost }}</div>
             </div>
             <li ng-repeat="research in researchList" ng-click="buyResearch(research)" ng-show="isOn(research)">
-                <div class="grid_2 alpha">{{ research.title }}</div>
-                <div class="grid_2">{{ research.effectDesc }}</div>
-                <div class="grid_2 omega">{{ research.cost }}</div>
+                <div class="grid_4 alpha">{{ research.title }}</div>
+                <div class="grid_5">{{ research.effectDesc }}</div>
+                <div class="grid_1 omega">{{ research.cost }}</div>
             </li>
         </div>
     </div>
