@@ -33,7 +33,16 @@ clickABand.factory('gameService', ['$rootScope', '$interval',
                     return r;
                 }
             };
+
+            this.increasePerSecond();
         };
+
+        GameService.prototype.increasePerSecond = function() {
+            var self = this;
+            $interval(function () {
+                self.addNotesPerSecond();
+            }, 1000);
+        }
 
         GameService.prototype.calculateNotesPerClick = function () {
             return this.notesPerClick + this.clickEffect * this.clickOwned;
@@ -60,11 +69,6 @@ clickABand.factory('gameService', ['$rootScope', '$interval',
                 } else {
                     this.addPerHourEffect(song);
                 }
-
-                var self = this;
-                $interval(function () {
-                    self.addNotesPerSecond();
-                }, 1000);
 
                 $rootScope.$broadcast('notesChanged');
             }
@@ -123,6 +127,13 @@ clickABand.factory('gameService', ['$rootScope', '$interval',
             $rootScope.$broadcast('notesChanged');
         };
 
+        GameService.prototype.buyResearch = function(research) {
+            if (this.notesTotal >= research.cost) {
+                this.notesTotal -= research.cost;
+                research.cost += research.cost * 0.1;
+                research.owned++;
+            }
+        }
         return new GameService();
     }
 ]);
