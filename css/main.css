@@ -38,3 +38,7 @@ body {
 .feature {
     border: 1px solid black;
 }
+
+#clickRecord {
+    margin-bottom: 20px;
+}
