@@ -47,7 +47,7 @@
             </div>
             <li ng-repeat="research in researchList" ng-click="buyResearch(research)" ng-show="isOn(research)">
                 <div class="grid_3 alpha">{{ research.title }}</div>
-                <div class="grid_5">{{ research.effectDesc }}</div>
+                <div class="grid_5">{{ research.getEffectDesc() }}</div>
                 <div class="grid_1 omega">{{ research.cost }}</div>
             </li>
         </div>

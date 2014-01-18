@@ -72,7 +72,7 @@ clickABand.controller('SongController', ['$scope', 'gameService',
         ];
 
         $scope.buySong = function (song) {
-            gameService.buySong(song)
+            gameService.buySong(song);
         };
 
         $scope.isOn = function(song) {
@@ -87,6 +87,21 @@ clickABand.controller('SongController', ['$scope', 'gameService',
                 }
             })
         });
+
+        $scope.$on('effectChanged', function(name, args) {
+            var song = $scope.findSong(args[0]);
+            song.effect = gameService.roundToDec(song.effect + song.effect * args[1]);
+        });
+
+        $scope.findSong = function(title) {
+            var returnSong = {};
+            $scope.songs.forEach(function(song){
+                if (title === song.title) {
+                    returnSong = song;
+                }
+            });
+            return returnSong;
+        };
     }
 
 ]);
@@ -100,10 +115,15 @@ clickABand.controller('ResearchController', ['$scope', 'gameService',
 
         $scope.researchList = [
             {
-                'title': 'Verbessertes Songwriting',
-                'effectDesc': '+5% auf alle Effekte durch Songs',
+                'title': 'Autotune',
                 'cost': 50,
-                'on': false
+                'on': false,
+                'type': 'increaseSongEffect',
+                'song': 'Cover Songs',
+                'factor': 0.05,
+                'getEffectDesc':  function() {
+                    return '+' + gameService.roundToDec(this.factor*100) + '% auf Effekt durch Cover Songs';
+                }
             }
         ];
 
@@ -117,7 +137,11 @@ clickABand.controller('ResearchController', ['$scope', 'gameService',
                     $scope.researchOn = true;
                     research.on = true;
                 }
-            });
+            })
         });
+
+        $scope.buyResearch = function(research) {
+            gameService.buyResearch(research);
+        }
     }
 ]);

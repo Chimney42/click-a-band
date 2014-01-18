@@ -8,6 +8,8 @@ clickABand.factory('gameService', ['$rootScope', '$interval',
             this.clickEffect = 0;
             this.clickOwned = 0;
 
+            this.researchTypes = ['increaseSongEffect', 'unlock'];
+
             this.perHourEffects = {
                 'effects': [],
                 'addEffect': function (song) {
@@ -45,11 +47,11 @@ clickABand.factory('gameService', ['$rootScope', '$interval',
         }
 
         GameService.prototype.calculateNotesPerClick = function () {
-            return this.notesPerClick + this.clickEffect * this.clickOwned;
+            return this.roundToDec(this.notesPerClick + this.clickEffect * this.clickOwned);
         };
 
         GameService.prototype.getNotesTotal = function () {
-            return this.round(this.notesTotal);
+            return this.roundToDec(this.notesTotal);
         };
 
         GameService.prototype.clickRecord = function () {
@@ -61,7 +63,7 @@ clickABand.factory('gameService', ['$rootScope', '$interval',
         GameService.prototype.buySong = function (song) {
             if (this.notesTotal >= song.cost) {
                 this.notesTotal -= song.cost;
-                song.cost = this.round(song.cost + song.cost * 0.1);
+                song.cost = this.roundToDec(song.cost + song.cost * 0.1);
                 song.owned++;
                 if ('Cover Songs' === song.title) {
                     this.clickEffect = song.effect;
@@ -74,7 +76,7 @@ clickABand.factory('gameService', ['$rootScope', '$interval',
             }
         };
 
-        GameService.prototype.round = function (number) {
+        GameService.prototype.roundToDec = function (number) {
             return Math.round(number * 100) / 100;
         };
 
@@ -113,11 +115,11 @@ clickABand.factory('gameService', ['$rootScope', '$interval',
             this.calculateNotesPerHour();
             var notesPerHour = this.calculateNotesPerHour();
             if (notesPerHour >= 3600) {
-                notesPerInterval += ('Sekunde: ' + this.round(notesPerHour / 3600));
+                notesPerInterval += ('Sekunde: ' + this.roundToDec(notesPerHour / 3600));
             } else if (notesPerHour >= 60) {
-                notesPerInterval += ('Minute: ' + this.round(notesPerHour / 60));
+                notesPerInterval += ('Minute: ' + this.roundToDec(notesPerHour / 60));
             } else {
-                notesPerInterval += ('Stunde: ' + this.round(notesPerHour));
+                notesPerInterval += ('Stunde: ' + this.roundToDec(notesPerHour));
             }
             return notesPerInterval;
         };
@@ -130,10 +132,29 @@ clickABand.factory('gameService', ['$rootScope', '$interval',
         GameService.prototype.buyResearch = function(research) {
             if (this.notesTotal >= research.cost) {
                 this.notesTotal -= research.cost;
-                research.cost += research.cost * 0.1;
+                research.cost = research.cost * 3;
                 research.owned++;
+                switch (research.type) {
+                    case (this.researchTypes[0]):
+                        this.increaseSongEffect(research);
+                }
+                research.factor += research.factor / 2;
+                $rootScope.$broadcast('notesChanged');
             }
-        }
+        };
+
+        GameService.prototype.increaseSongEffect = function(research) {
+            if ('Cover Songs' === research.song) {
+                this.clickEffect += this.clickEffect * research.factor;
+            } else {
+                var perHourEffect = this.perHourEffects.findEffect(research.song);
+                if (perHourEffect) {
+                    perHourEffect.effect += perHourEffect.effect * research.factor;
+                }
+            }
+            $rootScope.$broadcast('effectChanged', [research.song, research.factor]);
+        };
+
         return new GameService();
     }
 ]);
