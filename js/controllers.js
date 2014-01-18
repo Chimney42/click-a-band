@@ -6,8 +6,7 @@ clickABand.controller('StatsController', ['$scope', 'gameService',
 
         $scope.notesTotal = 0;
         $scope.notesPerClick = 1;
-        $scope.notesPerHour = 0;
-        $scope.notesInterval = 'Stunde';
+        $scope.notesPerInterval = 'Stunde: 0';
 
         $scope.$on('notesChanged', function(e) {
             updateNotes();
@@ -16,7 +15,7 @@ clickABand.controller('StatsController', ['$scope', 'gameService',
         var updateNotes = function() {
             $scope.notesTotal = gameService.getNotesTotal();
             $scope.notesPerClick = gameService.calculateNotesPerClick();
-            $scope.notesPerHour = gameService.calculateNotesPerHour();
+            $scope.notesPerInterval = gameService.getNotesPerInterval();
         }
     }
 ]);

@@ -6,6 +6,7 @@ clickABand.factory('gameService', ['$rootScope', function($rootScope) {
         this.notesPerClick = 1;
         this.clickEffect = 0;
         this.clickOwned = 0;
+
         this.perHourEffects = {
             'effects': [],
             'addEffect': function(song) {
@@ -66,13 +67,48 @@ clickABand.factory('gameService', ['$rootScope', function($rootScope) {
         return Math.round(number * 100) / 100;
     };
 
-    GameService.prototype.calculateNotesPerHour = function() {
-        console.log(this.perHourEffects);
-    }
 
     GameService.prototype.addPerHourEffect = function(song) {
         this.perHourEffects.addEffect(song);
+    };
+
+    GameService.prototype.convertToHour = function(perHourEffect) {
+        var toHour;
+        switch (perHourEffect.unit) {
+            case 'Stunde':
+                toHour = perHourEffect.effect;
+                break;
+            case 'Minute':
+                toHour = perHourEffect.effect * 60;
+                break;
+            case 'Sekunde':
+                toHour = perHourEffect.effect * 3600;
+                break;
+        }
+        return toHour;
+    };
+
+    GameService.prototype.calculateNotesPerHour = function() {
+        var self = this;
+        var notesPerHour = 0;
+        this.perHourEffects.effects.forEach(function(perHourEffect) {
+            notesPerHour += (self.convertToHour(perHourEffect) * perHourEffect.owned);
+        });
+        return notesPerHour;
     }
 
+    GameService.prototype.getNotesPerInterval = function() {
+        var notesPerInterval = '';
+        this.calculateNotesPerHour();
+        var notesPerHour = this.calculateNotesPerHour();
+        if(notesPerHour >= 3600) {
+            notesPerInterval += ('Sekunde: ' + this.round(notesPerHour/3600));
+        } else if(notesPerHour >= 60) {
+            notesPerInterval += ('Minute: ' + this.round(notesPerHour/60));
+        } else {
+            notesPerInterval += ('Stunde: ' + this.round(notesPerHour));
+        }
+        return notesPerInterval;
+    };
     return new GameService();
 }]);
