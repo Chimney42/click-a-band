@@ -79,6 +79,14 @@ clickABand.controller('SongController', ['$scope', 'gameService',
             return song.on;
         };
 
+        $scope.hoverColor = function(song) {
+            if (gameService.getNotesTotal() >= song.cost) {
+                return 'hoverGreen';
+            } else {
+                return 'hoverRed';
+            }
+        }
+
         $scope.$on('notesChanged', function () {
             $scope.songs.forEach(function(song) {
                 if(gameService.getNotesTotal() >= song.cost) {
@@ -142,6 +150,14 @@ clickABand.controller('ResearchController', ['$scope', 'gameService',
 
         $scope.buyResearch = function(research) {
             gameService.buyResearch(research);
+        }
+
+        $scope.hoverColor = function(research) {
+            if (gameService.getNotesTotal() >= research.cost) {
+                return 'hoverGreen';
+            } else {
+                return 'hoverRed';
+            }
         }
     }
 ]);

@@ -30,12 +30,12 @@
                 <div id="songCost" class="grid_2">{{ cost }}</div>
                 <div id="songOwned" class="grid_2 omega">{{ owned }}</div>
             </div>
-            <li ng-repeat="song in songs" ng-click="buySong(song)" ng-show="isOn(song)">
+            <div class="grid_8 alpha omega hoverContainer" ng-repeat="song in songs" ng-click="buySong(song)" ng-show="isOn(song)" ng-class="hoverColor(song)">
                 <div class="grid_2 alpha">{{ song.title }}</div>
                 <div class="grid_2">+{{ song.effect }}/{{ song.effectUnit }}</div>
                 <div class="grid_2">{{ song.cost }} Noten</div>
                 <div class="grid_2 omega">{{ song.owned }}</div>
-            </li>
+            </div>
         </div>
     </div>
     <div id="right" class="grid_9">
@@ -45,11 +45,11 @@
                 <div id="researchEffect" class="grid_5">{{ effectDesc }}</div>
                 <div id="researchCost" class="grid_1 omega">{{ cost }}</div>
             </div>
-            <li ng-repeat="research in researchList" ng-click="buyResearch(research)" ng-show="isOn(research)">
+            <div class="grid_9 alpha omega" ng-repeat="research in researchList" ng-click="buyResearch(research)" ng-show="isOn(research)" ng-class="hoverColor(research)">
                 <div class="grid_3 alpha">{{ research.title }}</div>
                 <div class="grid_5">{{ research.getEffectDesc() }}</div>
-                <div class="grid_1 omega">{{ research.cost }}</div>
-            </li>
+                <div class="grid_1 omega">{{ research.cost }} Noten</div>
+            </div>
         </div>
     </div>
 </div>

@@ -9,8 +9,8 @@ body {
     font-family: 'Carrois Gothic SC', sans-serif;
 }
 
-li {
-    list-style: none;
+.hoverContainer {
+    overflow:hidden;
 }
 
 #stats {
@@ -20,6 +20,14 @@ li {
 
 [ng-click] {
     cursor: pointer;
+}
+
+.hoverGreen:hover {
+    background-color: green;
+}
+
+.hoverRed:hover {
+    background-color: red;
 }
 
 .feature-title {
