@@ -237,6 +237,7 @@ clickABand.controller('AlbumController', ['$scope', 'gameService',
         $scope.songs = [];
         $scope.albumTitle = 'Songs';
         $scope.albumOwned = 'In Besitz';
+        $scope.submit = 'Veroeffentlichen';
 
         $scope.albums = [
             {
@@ -307,5 +308,9 @@ clickABand.controller('AlbumController', ['$scope', 'gameService',
                 return 'hoverRed';
             }
         };
+
+        $scope.publish = function() {
+            gameService.buyAlbum($scope.songs);
+        }
     }
 ]);

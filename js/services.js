@@ -163,6 +163,10 @@ clickABand.factory('gameService', ['$rootScope', '$interval',
             $rootScope.$broadcast('unlock', [research.feature])
         };
 
+        GameService.prototype.buyAlbum = function(songs) {
+        // randomize action
+        };
+
         return new GameService();
     }
 ]);
