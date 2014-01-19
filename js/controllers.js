@@ -204,7 +204,7 @@ clickABand.controller('ResearchController', ['$scope', 'gameService',
 
         $scope.buyResearch = function(research) {
             gameService.buyResearch(research);
-        }
+        };
 
         $scope.hoverColor = function(research) {
             if (gameService.getNotesTotal() >= research.cost) {
@@ -260,10 +260,12 @@ clickABand.controller('AlbumController', ['$scope', 'gameService',
         });
 
         $scope.buyAlbum = function(album) {
-            $scope.buyAlbumOn = true;
+            if (gameService.notesTotal >= album.cost) {
+                $scope.buyAlbumOn = !$scope.buyAlbumOn;
+            }
         };
 
-        $scope.$on('songBought', function(name, args) {
+        $scope.$on('songBought', function() {
             if (gameService.clickOwned > 0) {
                 $scope.songs = [{
                     'title': 'Cover Song',
@@ -290,6 +292,18 @@ clickABand.controller('AlbumController', ['$scope', 'gameService',
             if (song.count > 0) {
                 song.count--;
             }
-        }
+        };
+
+        $scope.hoverColor = function(album) {
+            var songs = gameService.clickOwned;
+            gameService.perHourEffects.effects.forEach(function(effect) {
+                songs += effect.owned;
+            });
+            if (gameService.getNotesTotal() >= album.cost && songs >= album.reqSongs) {
+                return 'hoverGreen';
+            } else {
+                return 'hoverRed';
+            }
+        };
     }
 ]);

@@ -43,7 +43,7 @@
                 <div id="albumReqSongs" class="grid_3">{{ reqSongs }}</div>
                 <div id="albumCost" class="grid_2 omega">{{ cost }}</div>
             </div>
-            <div class="grid_8 alpha omega" ng-repeat="album in albums" ng-click="buyAlbum(album)">
+            <div class="grid_8 alpha omega" ng-repeat="album in albums" ng-click="buyAlbum(album)" ng-class="hoverColor(album)">
                 <div class="grid_3 alpha">{{ album.title }}</div>
                 <div class="grid_3">{{ album.reqSongs }} Songs</div>
                 <div class="grid_2 omega">{{ album.cost }} Noten</div>
@@ -57,6 +57,9 @@
                     <div class="grid_1">{{ song.count }}</div>
                     <div class="grid_1" ng-click="increaseCount(song)">+</div>
                     <div class="grid_1" ng-click="decreaseCount(song)">-</div>
+                </div>
+                <div class="grid_8 alpha omega">
+                    <div class="grid_1"></div>
                 </div>
             </div>
         </div>
