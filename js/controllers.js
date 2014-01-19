@@ -228,23 +228,24 @@ clickABand.controller('ResearchController', ['$scope', 'gameService',
     }
 ]);
 
-clickABand.controller('AlbumController', ['$scope', 'gameService',
-    function($scope, gameService) {
+clickABand.controller('AlbumController', ['$scope', '$window', 'gameService',
+    function($scope, $window, gameService) {
         $scope.albumOn = false;
         $scope.title = 'Album';
         $scope.reqSongs = 'Songs benoetigt';
         $scope.cost = 'Kosten';
+        $scope.lightbox = {'display': 'none'};
 
         $scope.albums = [
             {
                 'title': 'Single',
                 'reqSongs': 5,
-                'cost': 1000
+                'cost': 500
             },
             {
                 'title': 'Album',
                 'reqSongs': 20,
-                'cost': 10000
+                'cost': 5000
             }
         ];
 
@@ -252,6 +253,10 @@ clickABand.controller('AlbumController', ['$scope', 'gameService',
             if ('album' === args[0]) {
                 $scope.albumOn = true;
             }
-        })
+        });
+
+        $scope.buyAlbum = function(album) {
+            $scope.lightbox = {'display': 'inline'}
+        }
     }
 ]);
