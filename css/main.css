@@ -39,3 +39,14 @@ body {
 #clickRecord {
     margin-bottom: 20px;
 }
+
+#buyAlbum {
+    margin-top: 10px;
+    margin-bottom: 10px;
+}
+
+#submit {
+    margin-top: 5px;
+    border: 1px solid black;
+    text-align: center;
+}

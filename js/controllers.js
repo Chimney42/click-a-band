@@ -234,10 +234,8 @@ clickABand.controller('AlbumController', ['$scope', 'gameService',
         $scope.title = 'Album';
         $scope.reqSongs = 'Songs benoetigt';
         $scope.cost = 'Kosten';
-        $scope.lightbox = {'display': 'none'};
-        $scope.buyAlbumOn = false;
         $scope.songs = [];
-        $scope.albumTitle = 'Album';
+        $scope.albumTitle = 'Songs';
         $scope.albumOwned = 'In Besitz';
 
         $scope.albums = [
@@ -260,8 +258,12 @@ clickABand.controller('AlbumController', ['$scope', 'gameService',
         });
 
         $scope.buyAlbum = function(album) {
-            if (gameService.notesTotal >= album.cost) {
-                $scope.buyAlbumOn = !$scope.buyAlbumOn;
+            var songs = gameService.clickOwned;
+            gameService.perHourEffects.effects.forEach(function(effect) {
+                songs += effect.owned;
+            });
+            if (gameService.getNotesTotal() >= album.cost && songs >= album.reqSongs) {
+                album.buyAlbumOn = !album.buyAlbumOn;
             }
         };
 
