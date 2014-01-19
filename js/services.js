@@ -71,7 +71,7 @@ clickABand.factory('gameService', ['$rootScope', '$interval',
                 } else {
                     this.addPerHourEffect(song);
                 }
-
+                $rootScope.$broadcast('songBought');
                 $rootScope.$broadcast('notesChanged');
             }
         };

@@ -48,8 +48,16 @@
                 <div class="grid_3">{{ album.reqSongs }} Songs</div>
                 <div class="grid_2 omega">{{ album.cost }} Noten</div>
             </div>
-            <div id="lightbox" class="lightbox" ng-style="lightbox">
-                <button onclick="document.getElementById('lightbox').style.display='none';">Button</button>
+            <div id="buyAlbum" class="grid_8" ng-show="buyAlbumOn" ng-style="{'margin-top':'10px'}">
+                <div class="grid_8 alpha omega" ng-style="{'font-weight': 'bold'}">
+                    <div class="grid_8 alpha omega">{{ albumTitle }}</div>
+                </div>
+                <div ng-repeat="song in songs" ng-style="{'margin-bottom':'10px'}">
+                    <div class="grid_3 alpha">{{ song.title }}</div>
+                    <div class="grid_1">{{ song.count }}</div>
+                    <div class="grid_1" ng-click="increaseCount(song)">+</div>
+                    <div class="grid_1" ng-click="decreaseCount(song)">-</div>
+                </div>
             </div>
         </div>
     </div>

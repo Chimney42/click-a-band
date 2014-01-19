@@ -228,13 +228,17 @@ clickABand.controller('ResearchController', ['$scope', 'gameService',
     }
 ]);
 
-clickABand.controller('AlbumController', ['$scope', '$window', 'gameService',
-    function($scope, $window, gameService) {
+clickABand.controller('AlbumController', ['$scope', 'gameService',
+    function($scope, gameService) {
         $scope.albumOn = false;
         $scope.title = 'Album';
         $scope.reqSongs = 'Songs benoetigt';
         $scope.cost = 'Kosten';
         $scope.lightbox = {'display': 'none'};
+        $scope.buyAlbumOn = false;
+        $scope.songs = [];
+        $scope.albumTitle = 'Album';
+        $scope.albumOwned = 'In Besitz';
 
         $scope.albums = [
             {
@@ -256,7 +260,36 @@ clickABand.controller('AlbumController', ['$scope', '$window', 'gameService',
         });
 
         $scope.buyAlbum = function(album) {
-            $scope.lightbox = {'display': 'inline'}
+            $scope.buyAlbumOn = true;
+        };
+
+        $scope.$on('songBought', function(name, args) {
+            if (gameService.clickOwned > 0) {
+                $scope.songs = [{
+                    'title': 'Cover Song',
+                    'owned': gameService.clickOwned,
+                    'count': 0
+                }];
+            }
+            gameService.perHourEffects.effects.forEach(function(effect) {
+                $scope.songs.push({
+                    'title': effect.title,
+                    'owned': effect.owned,
+                    'count': 0
+                });
+            });
+        });
+
+        $scope.increaseCount = function(song) {
+            if(song.count < song.owned) {
+                song.count++;
+            }
+        };
+
+        $scope.decreaseCount = function(song) {
+            if (song.count > 0) {
+                song.count--;
+            }
         }
     }
 ]);
