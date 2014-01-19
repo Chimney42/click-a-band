@@ -55,12 +55,12 @@
                     </div>
                     <div ng-repeat="song in songs">
                         <div class="grid_3 alpha">{{ song.title }}</div>
-                        <div class="grid_3">{{ song.count }}</div>
-                        <div class="grid_1" ng-click="increaseCount(song)">+</div>
-                        <div class="grid_1 omega" ng-click="decreaseCount(song)">-</div>
+                        <div class="grid_1">{{ song.count }}</div>
+                        <div class="grid_1 push_1 button" ng-click="increaseCount(song)" >+</div>
+                        <div class="grid_1 omega push_1 button" ng-click="decreaseCount(song)">-</div>
                     </div>
                     <div class="grid_8 alpha omega">
-                        <div class="grid_2 push_5" ng-style="enoughSongs()" id="submit">Veroeffentlichen</div>
+                        <div class="grid_2 push_5 button">Veroeffentlichen</div>
                     </div>
                 </div>
             </div>

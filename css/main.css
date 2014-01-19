@@ -45,8 +45,8 @@ body {
     margin-bottom: 10px;
 }
 
-#submit {
-    margin-top: 5px;
+.button {
+    margin: 5px 20px 5px 20px;
     border: 1px solid black;
     text-align: center;
 }
